@@ -2,7 +2,7 @@
 
 A beautiful, responsive image gallery with lightbox functionality, EXIF data display, and comprehensive image protection features. Built with modern web technologies and optimized for performance.
 
-![Gallery Preview](https://img.shields.io/badge/Gallery-PhotoSwipe%20v5.4.4-blue)
+![Gallery Preview](https://bawva.work/photos/gallery/)
 
 ## ✨ Features
 
@@ -138,6 +138,12 @@ This project is built with the following amazing open-source libraries and techn
   - License: MIT  
   - [GitHub Repository](https://github.com/exif-js/exif-js)
 
+### 📸 **Sample Photos**
+- **[PixelPeeper](https://pixelpeeper.com/)** - Sample photos with EXIF metadata
+  - *Platform for learning photo editing from JPG metadata*
+  - Sample photos used for demonstration purposes
+  - **Note**: All sample photos are sourced from PixelPeeper.com. I do not hold any copyrights for these images.
+
 ## 📖 Documentation
 
 ### EXIF Data Fields
@@ -173,4 +179,8 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## ⚠️ Legal Note
 
+### Image Protection
 The image protection features are designed to deter casual downloading but cannot prevent determined users with technical knowledge. For sensitive content, consider additional server-side protection, watermarking, or legal measures.
+
+### Sample Photos Copyright
+**Important**: The sample photos included in this project are sourced from [PixelPeeper.com](https://pixelpeeper.com/) and are used for demonstration purposes only. I do not hold any copyrights for these images. All rights to the sample photos remain with their respective photographers and copyright holders. If you plan to use this gallery for commercial purposes, please replace the sample photos with your own images or ensure you have proper licensing for any images you use.

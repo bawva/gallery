@@ -1,0 +1,20 @@
+# Block all search engines from the entire site
+User-agent: *
+Disallow: /
+
+# Specifically block image indexing
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+# Block specific directories
+Disallow: /images/
+Disallow: *.jpg
+Disallow: *.jpeg
+Disallow: *.png
+Disallow: *.gif
+Disallow: *.webp
+
+# No sitemap provided (prevents discovery) 

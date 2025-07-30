@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.gallery-grid {
+    column-count: 5;
+    column-gap: 4px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2px;
+    /* Image protection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+    transition: opacity 0.3s ease;
+    /* Prevent image selection and dragging */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    /* Keep click functionality for lightbox */
+    pointer-events: auto;
+    break-inside: avoid;
+    margin: 0 0 2px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.gallery-item:hover {
+    opacity: 0.8;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    /* Image protection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+.gallery-item img.loaded {
+    opacity: 1;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+}
+
+/* Loading spinner for individual images */
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #333;
+    border-top: 2px solid #666;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+.gallery-item.loaded::before {
+    display: none;
+}
+
+/* Global loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #333;
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .gallery-grid {
+        column-count: 4;
+    }
+}
+
+@media (max-width: 1024px) {
+    .gallery-grid {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        column-count: 2;
+        column-gap: 2px;
+        padding: 1px;
+    }
+    
+    .gallery-item {
+        margin-bottom: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        column-count: 1;
+        column-gap: 0;
+        padding: 0;
+    }
+    
+    .gallery-item {
+        margin-bottom: 1px;
+    }
+}
+
+/* PhotoSwipe lightbox image styling */
+.pswp__img {
+    border-radius: 8px 8px 0 0 !important;
+    /* Image protection in lightbox */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -moz-user-drag: none !important;
+    -o-user-drag: none !important;
+    user-drag: none !important;
+}
+
+/* EXIF data panel styling */
+.exif-panel {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    padding: 15px 20px;
+    font-size: 13px;
+    line-height: 1.4;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    box-sizing: border-box;
+    margin-top: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    overflow: hidden;
+    /* Start off-screen to prevent middle appearance */
+    top: -1000px;
+    left: -1000px;
+}
+
+.exif-panel.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.exif-panel-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    align-items: center;
+}
+
+.exif-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.exif-label {
+    font-weight: 500;
+    opacity: 0.8;
+    margin-right: 6px;
+}
+
+.exif-value {
+    font-weight: 400;
+}
+
+/* Mobile-specific PhotoSwipe optimizations */
+@media (max-width: 768px) {
+    .pswp {
+        --pswp-bg: #000;
+    }
+    
+    .pswp__container {
+        padding: 0 !important;
+    }
+    
+        /* Hide arrow buttons on mobile - use swipe instead */
+    .pswp .pswp__button--arrow--left,
+    .pswp .pswp__button--arrow--right {
+        display: none !important;
+        opacity: 0 !important;
+    }
+    
+            /* Mobile adjustments for EXIF panel */
+        .exif-panel {
+            padding: 12px 15px;
+            font-size: 12px;
+            margin-top: 0;
+        }
+        
+        .exif-panel-grid {
+            gap: 6px 15px;
+        }
+
+} 
