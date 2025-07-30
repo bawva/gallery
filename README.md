@@ -2,7 +2,7 @@
 
 A beautiful, responsive image gallery with lightbox functionality, EXIF data display, and comprehensive image protection features. Built with modern web technologies and optimized for performance.
 
-![Gallery Preview](https://bawva.work/photos/gallery/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Gallery-blue?style=for-the-badge)](https://bawva.work/photos/gallery/) ![PhotoSwipe](https://img.shields.io/badge/PhotoSwipe-v5.4.4-green?style=for-the-badge)
 
 ## ✨ Features
 
